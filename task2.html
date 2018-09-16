@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			fieldset{
+				border:#c0c0c0 solid 2px;
+			}
+			legend{
+				color: #f00000;
+				font-weight:500; 
+			}
+			
+		</style>
+		<script type="text/javascript" src="jquery.js"></script>
+		<script type="text/javascript">
+			function suggestEmail(){
+				var email = $("#emailInput").val();
+				$("#emailList").empty();
+				if(email.indexOf("@")>-1){
+					return false;
+				}else{
+					$("#emailList").append("<option value='"+ email +"@qq.com'>"+
+						"<option value='"+ email +"@126.com'>"+
+						"<option value='"+ email +"@foxmail.com'>"+
+						"<option value='"+ email +"@163.com'>"+
+						"<option value='"+ email +"@gmail.com'>")
+					}
+			}
+		</script>
+		 
+	</head>
+	<body>
+		<h1>请填写个人信息</h1>
+		<fieldset >
+			<legend>基本信息</legend>
+			姓名<input type="text" name="name" placeholder="请输入姓名" required="required"/><span style="color:red">*</span><br />
+			年龄<input type="number" name="age" />
+		</fieldset>
+		<fieldset>
+			<legend>你想在哪里收到邮件?</legend>
+			邮箱<input type="email" id="emailInput" list="emailList" name="off_autocomplete" oninput="suggestEmail()"/><span style="color:red">*</span>
+			<datalist id="emailList"></datalist>
+		</fieldset>
+		<fieldset>
+			<legend>收入情况</legend>
+			月收入
+			<select>
+  				<option>20k+</option>
+  				<option>30k+</option>
+  				<option>40k+</option>
+  				<option>50k+</option>
+			</select><br />
+			银行卡<input type="text" name="card"/>有效期<input type="date" />
+		</fieldset>
+		<fieldset>
+			<legend>选取提交文件</legend>
+			文件<input type="file" name="file"/>
+		</fieldset>
+		<input type="submit" />
+		
+		
+		
+	</body>
+</html>
+
