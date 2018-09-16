@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>可不可以——张紫豪</title>
+		<script>
+			//为什么所有的对象必须写在函数里？
+			function play(){
+				var playbutton=document.getElementById('playaudio');
+				var pausebutton=document.getElementById('pauseaudio');
+				var audio=document.getElementById('audios');
+				audio.play();
+				playbutton.disabled=true;
+				pausebutton.disabled=false;
+			}
+			function pause(){
+				var playbutton=document.getElementById('playaudio');
+				var pausebutton=document.getElementById('pauseaudio');
+				var audio=document.getElementById('audios');
+				audio.pause();
+				playbutton.disabled=false;
+				pausebutton.disabled=true;
+			}
+		</script>
+	</head>
+	<body>
+		<audio class="music" id="audios" src="http://fs.w.kugou.com/201809161127/d05d7fcc0dc530c92a17eb46ea207e7c/G130/M05/12/00/YpQEAFrxTvOAQ8I-ADrUXaC6U88058.mp3" preload="auto" loop="loop">
+            
+        </audio>
+		<input type='button' value="播放" id="playaudio"  onclick = "play()" />
+		<input type="button" value="暂停" id="pauseaudio" disabled="disabled"  onclick = "pause()" />
+	</body>
+</html>
