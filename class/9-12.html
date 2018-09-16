@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<h1>请填写个人信息</h1>
+		<fieldset>
+			<legend>基本信息</legend>
+			姓名<input type="text" name="name" required="required"/><br />
+			年龄<input type="number" name="age" />
+		</fieldset>
+		<fieldset>
+			<legend>你想在哪里收到邮件?</legend>
+			邮箱<input type="email" name="em" required="required"/>
+		</fieldset>
+		<fieldset>
+			<legend>收入情况</legend>
+			月收入<input type="text" />
+		</fieldset>
+		
+		
+		<form action="">
+			
+			<input type="number" name="num1" min="12" max="81" step="5" id="" value="" /><br />
+			<input type="email" name="em1" placeholder="请输入邮箱地址" />			
+			<input type="range" min="1" max="10" name="point"/><br/>
+			日期：<input type="week" name="date1" /><br />
+			颜色：<input type="color" name="color1"/><br />
+			搜索：<input type="search" name="sc" autocomplete="on" list="dl" results/><br />
+			<datalist id="dl">
+				<option>碟中谍</option>
+				<option>复仇者联盟</option>
+				<option>金刚狼</option>
+				<option>钢铁侠</option>
+				<option>美国队长</option>
+				<option>奇异博士</option>
+				
+			</datalist>
+			<input type="submit" />
+		</form>
+	</body>
+</html>
