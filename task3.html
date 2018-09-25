@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/jquery.js"></script>
+		<style type="text/css">
+			#color{width:300px;height:48px;border:1px solid #888888;}
+			.cg{		
+    			border: none;    			    			
+    			width:48px;
+    			height:26px;
+    			float:left;
+    			margin-top:10px;
+    			margin-right:6px;
+			}
+			.cg:hover{margin-top: 6px;}
+			#color1 {background-color: #4CAF50;margin-left:12px;} /* Green */
+			#color2 {background-color: #008CBA;} /* Blue */
+			#color3 {background-color: #f44336;} /* Red */ 
+			#color4 {background-color: #e7e7e7;} /* Gray */ 
+			#color5 {background-color: #555555;} /* Black */
+		</style>
+		
+	</head>
+	<body>
+		<fieldset>
+			<legend>页面换肤</legend>
+			<div id="color">
+					<div class="cg" id="color1"  value="#4CAF50"></div>
+					<div class="cg" id="color2"  value="#008CBA"></div>
+					<div class="cg" id="color3"  value="#f44336"></div>
+					<div class="cg" id="color4"  value="#e7e7e7"></div>
+					<div class="cg" id="color5"  value="#555555"></div>				
+			</div>
+			
+			<p class="text">LocalStorage将数据保存在客户端本地的硬件设备中，即使浏览器被关闭了，该数据依然存在，下次打开浏览器访问网站时仍然可以继续使用。</p>	
+			
+		</fieldset>
+		<script>
+			//页面换肤
+//			function ChangeColor(id){
+//				if(!window.localStorage){
+//          		alert("浏览器支持localstorage");
+//          		return false;
+//         		}else{
+//         			var cid=document.getElementById(id);
+//					console.log(id);
+//					var txt=document.getElementById("text");
+//					txt.backgroundColor=cid.backgroundColor;
+////					localStorage.setItem(txt.style.backgroundColor,cid.value);
+//         		}
+////				var cid=document.getElementById(id);
+////				console.log(id);
+////				document.getElementById("text").style.backgroundColor=cid.style.backgroundColor;
+////				localStorage.setItem()
+//			}
+			
+			
+			//web存储
+			var keep=localStorage.getItem("content1");
+			if(keep){
+			$(".text").css("background-color",keep);}else{};
+
+			$(".cg").mouseover(function(){
+				$(".text").css("background-color",$(this).css("background-color"));
+				localStorage.setItem("content1",$(this).css("background-color"));
+			});		
+		</script>
+	</body>
+</html>
+
+
+
