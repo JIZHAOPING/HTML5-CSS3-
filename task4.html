@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>任务四</title>
+		<style type="text/css">
+			#k{
+		    	border: 1px solid #aaa;
+		    	border-radius: 3px;      
+		    	padding: 10px;      
+		    	margin: 10px; 
+		    	width: 320px;;     
+		    	height: 330px; 
+			}
+			p{
+				font:bolder 25px "微软雅黑"
+			}
+		</style>
+		
+	</head>
+	<body>
+		<p>上传头像</p>
+		<div id="k" draggable="true"></div>
+		<script>   
+			document.ondragover = function(e){
+				e.preventDefault();
+			}    
+			document.ondrop = function(e){
+				e.preventDefault(); 
+			}     
+			k.ondragover = function(e){
+				e.preventDefault();    
+			}    
+			k.ondrop = function(e){      
+				console.log('客户端拖动着一张图片释放了...')      
+				var f0 = e.dataTransfer.files[0];      
+				var fr = new FileReader();      
+				fr.readAsDataURL(f0); 
+				fr.onload = function(){        
+					console.log('读取文件完成')        
+					console.log(fr.result);        
+					var img = new Image();        
+					img.src = fr.result; 
+					img.style.maxHeight='330px';
+					k.appendChild(img);      
+				}    
+			}   
+		</script>
+	</body>
+</html>
