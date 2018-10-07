@@ -9,7 +9,7 @@
 		    	border-radius: 3px;      
 		    	padding: 10px;      
 		    	margin: 10px; 
-		    	width: 320px;;     
+		    	width: 500px;;     
 		    	height: 330px; 
 			}
 			p{
@@ -32,16 +32,14 @@
 				e.preventDefault();    
 			}    
 			k.ondrop = function(e){      
-				console.log('客户端拖动着一张图片释放了...')      
 				var f0 = e.dataTransfer.files[0];      
-				var fr = new FileReader();      
-				fr.readAsDataURL(f0); 
-				fr.onload = function(){        
-					console.log('读取文件完成')        
-					console.log(fr.result);        
+				var fl = new FileReader();      
+				fl.readAsDataURL(f0); 
+				fl.onload = function(){        
 					var img = new Image();        
-					img.src = fr.result; 
+					img.src = fl.result; 
 					img.style.maxHeight='330px';
+					img.style.maxWidth='495px';
 					k.appendChild(img);      
 				}    
 			}   
