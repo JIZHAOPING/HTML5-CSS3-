@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			canvas{
+				border: 1px solid #aaa;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas" width="300" height="300"></canvas>
+		
+		<script type="text/javascript">
+			var elem=document.getElementById('canvas');
+			var cxt=elem.getContext('2d');
+			
+			//设置变量
+			var width=canvas.width;
+			var height=canvas.height;
+			var r=width/2;
+		
+			//画表盘
+			function drawCircle(){
+				cxt.save();
+				//外圆
+				cxt.translate(r,r)
+				cxt.beginPath();
+				cxt.lineWidth=10;
+				cxt.arc(0,0,r-5,0,2*Math.PI);
+				cxt.strokeStyle="chartreuse";
+				cxt.stroke();
+//				cxt.closePath();
+				
+				//数字
+				var clockhour=[3,4,5,6,7,8,9,10,11,12,1,2];
+				cxt.font="18px Arial";
+				//设置数字对齐
+				cxt.textAlign="center";
+				cxt.textBaseline="middle";
+
+				clockhour.forEach(function(number,i){
+					//定义弧度
+					var rad=2*Math.PI/12*i;
+					//定义坐标
+					var x=Math.cos(rad)*(r-40);
+					var y=Math.sin(rad)*(r-40);
+					cxt.fillText(number,x,y);
+				})
+				
+				//刻度
+				for(var i=0;i<60;i++){
+					cxt.beginPath();        			
+        			if(i%5==0){
+        				cxt.fillStyle="red";
+        				cxt.fillRect(-2,-135, 5, 15);
+        				
+        			}else{
+        				cxt.fillStyle="black";
+        				cxt.fillRect(-2,-133, 3, 10);
+        			}
+        			cxt.rotate(6 / 180 * Math.PI);//旋转20度
+				}
+				//小时刻度
+//				for(var i=0;i<12;i++){
+//					cxt.beginPath();
+//      			cxt.rotate(30 / 180 * Math.PI);//旋转20度
+//      			cxt.fillStyle="red";
+//      			cxt.fillRect(-2,-135, 5, 15);
+//				}
+			}
+
+				
+			
+			//画时针
+			function drawHour(hour,minute){
+				cxt.save();
+				var rad=2*Math.PI/12*hour;
+				var mrad=(2*Math.PI/12)/ 60*minute;
+				cxt.rotate(rad+mrad);
+				cxt.beginPath();
+				cxt.moveTo(0,10);
+				cxt.lineTo(0,-r/2);
+				cxt.lineWidth=6;
+				cxt.lineCap="round";
+				cxt.strokeStyle="blueviolet";
+				cxt.stroke();
+				cxt.restore();
+			}
+			function drawMinute(minute){
+				cxt.save();
+				var rad=2*Math.PI/60*minute;
+				cxt.rotate(rad);
+				cxt.beginPath();
+				cxt.moveTo(0,10);
+				cxt.lineTo(0,-r*3/5);
+				cxt.lineWidth=4;
+				cxt.lineCap="butt";
+				cxt.strokeStyle="#FFC0CB";
+				cxt.stroke();
+				cxt.restore();
+			}
+			function drawSecond(second){
+				cxt.save();
+				//秒针
+				var rad=2*Math.PI/60*second;
+				cxt.rotate(rad);
+				cxt.beginPath();
+				cxt.moveTo(0,10);
+				cxt.lineTo(0,-r*2/3);
+				cxt.lineWidth=2;
+				cxt.lineCap="square";
+				cxt.strokeStyle="#F00000";
+				cxt.stroke();
+				cxt.closePath();
+				//小圆1
+				cxt.beginPath();
+				cxt.arc(0,0,4,0,2*Math.PI);
+				cxt.fillStyle="black";
+				cxt.strokeStyle="red";
+				cxt.fill();
+				cxt.stroke();
+				cxt.closePath();
+				//小圆2
+				cxt.beginPath();
+				cxt.arc(0,-r/2,4,0,2*Math.PI);
+				cxt.fillStyle="black";
+				cxt.strokeStyle="red";
+				cxt.fill();
+				cxt.stroke();
+				cxt.closePath();
+				
+				cxt.restore();
+			}
+			
+			
+			
+//			drawHour(hour,minute);
+//			drawMinute(minute);
+//			drawSecond(second);
+			
+			(function animate(){
+				cxt.clearRect(0,0,width,height);
+				
+				//获取时间
+				var now = new Date();
+				var second = now.getSeconds();
+				var minute = now.getMinutes();
+            	var hour = now.getHours();
+            	
+            	drawCircle();
+				drawHour(hour,minute);
+				drawMinute(minute);
+				drawSecond(second);
+				cxt.restore();
+				
+				requestAnimationFrame(animate);
+
+			})()
+		</script>
+	</body>
+</html>
